@@ -1,0 +1,491 @@
+<html>
+  <head>
+    <title>Hello, Snaps!</title>
+    <link rel="icon" type="image/svg" href="./images/icon.svg" />
+    <script src="./qrious.js"></script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="static/form_css/style.css" />
+    <link rel="stylesheet" href="static/card.css" />
+  </head>
+
+  <body class="gradient-bg-welcome">
+    <nav class="navbar navbar-expand-lg d-flex justify-content-between">
+      <a class="navbar-brand" href="#">
+        <!-- <img
+          src="static/images/logo.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+        /> -->
+        <div
+          style="
+            display: inline;
+            font-family: 'Lato';
+            font-size: 1.5em;
+          "
+          class="text-gradient"
+        >
+          <!-- <img src="static/images/logo.png" width="50" alt="" /> -->
+          <span>Welcome to Silence Laboratories</span>
+        </div>
+      </a>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active text-white" href="#"
+          >Home <span class="sr-only">(current)</span></a
+        >
+        <!-- <a class="nav-item nav-link" href="#">Market</a>
+        <a class="nav-item nav-link" href="#">Features</a> -->
+      </div>
+    </nav>
+
+    <section class="ftco-section" style="padding: 50px">
+      <!-- <div class="container"> -->
+      <div class="row justify-content-center">
+        <div
+          class="modal fade"
+          id="qr-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="qr-modalTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content white-glassmorphism" style="">
+              <div class="modal-header">
+                <h5 class="modal-title" id="qr-modalTitle" style="color: white">
+                  Scan QR
+                </h5>
+              </div>
+              <div class="modal-body text-center">
+                <img id="qrcode" class="qrcode" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div
+          class="modal fade"
+          id="use-phone-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="use-phone-modalTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content white-glassmorphism">
+              <div class="modal-header">
+                <h5 class="modal-title" id="use-phone-modalTitle" style="color: white; margin-left: auto; margin-right:auto">
+                  Check your phone
+                </h5>
+              </div>
+              <div class="modal-body text-center text-white">
+                Approve the transaction using Silent Shard App on your phone
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-container d-flex justify-content-between">
+          <div class="hero-section">
+            <h1 class="hero-heading text-gradient">
+              Silent Shard: <br />
+              <span style="font-size: 32px"> 
+                MPC (Threshold Signature) <br/> for your wallets
+              </span>
+            </h1>
+            <div class="hero-subheading text-gradient" style="margin-top: 30px; margin-bottom: 20px; font-size: 18px;">
+              Two Party Threshold Signature between your browser and phone wallet
+            </div>
+            <div class="hero-subheading text-gradient" style=" font-size: 18px">
+              Securely send crypto across the world, send transaction without ever exposing your private key
+            </div>
+          </div>
+          <div class="transaction-section col-md-5">
+            <div>
+              <div
+                class="wrap blue-glassmorphism d-flex align-items-center flex-column"
+              >
+                <!-- <div class="img" style="background-image: url(static/images/bg-1.png);"></div> -->
+                <div class="eth-card-container white-glassmorphism">
+                  <div
+                    class="eth-card d-flex flex-row justify-content-between p-4"
+                  >
+                    <div
+                      class="balance-container d-flex flex-column justify-content-end"
+                    >
+                      <div
+                        class="text-white"
+                        style="font-size: 1.5em; font-weight: bold"
+                      >
+                        <span id="eth-balance"> ... </span>
+                        ETH
+                      </div>
+                      <div class="text-white">
+                        <span id="eth-address-full" class="hidden1"></span>
+                        <span
+                          id="eth-address"
+                          style="cursor: pointer"
+                          onclick="copyContent('eth-address-full')"
+                        >
+                          address
+                        </span>
+
+                        <!-- <span id="eth-address-copy-unchecked" class="copy-button hidden1" style="cursor:pointer">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                            </svg>
+                          </span>
+                          <span id="eth-address-copy-checked" class="copy-button hidden1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                            </svg>
+                          </span> -->
+                      </div>
+                    </div>
+                    <div id="eth-card-refresh" class="text-white">
+                      <div
+                        id="eth-card-refresh-spinner"
+                        class="spinner-border text-light hidden1"
+                        role="status"
+                      >
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div id="eth-card-refresh-icon" class="hidden1">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="36"
+                          height="36"
+                          fill="currentColor"
+                          class="bi bi-arrow-clockwise"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+                          />
+                          <path
+                            d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mt-3 text-center">
+                  <button class="btn-grad" id="connect">
+                    Connect MPC Wallet
+                  </button>
+                </div>
+                <div
+                  class="login-wrap d-flex flex-column align-items-center"
+                  style="width: 80%"
+                >
+                  <div id="input-fields" class="pt-5 not-connected">
+                    <div class="form-group">
+                      <input
+                        id="addressTo"
+                        name="Address"
+                        class="form-control"
+                        type="text"
+                        placeholder="Address to"
+                      />
+                      <label class="form-control-placeholder">Address To</label>
+                    </div>
+                    <div class="form-group mt-5">
+                      <input
+                        id="amount"
+                        name="Amount"
+                        class="form-control"
+                        type="text"
+                        placeholder="Amount"
+                      />
+                      <label class="form-control-placeholder"
+                        >Amount to send</label
+                      >
+                    </div>
+
+                    <div class="form-group mt-5" style="display: none">
+                      <input name="message" class="form-control" type="text" />
+                      <label id="message" class="form-control-placeholder"
+                        >Message to sign</label
+                      >
+                    </div>
+
+                    <div
+                      id="send_sign_request"
+                      class="form-group mt-3 text-center"
+                    >
+                      <button
+                        class="btn-grad"
+                        style="margin-left: auto; margin-right: auto"
+                      >
+                        Send Transaction
+                      </button>
+                    </div>
+                    <div
+                      id="signing-spinner"
+                      style="display: none"
+                      class="form-group mt-3 text-center"
+                    >
+                      <button
+                        class="btn-grad text-center"
+                        style="margin-left: auto; margin-right: auto"
+                        disabled
+                      >
+                        <div style="padding-right: 5px; display: inline">
+                          <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                        </div>
+                        Sending Transaction...
+                      </button>
+                    </div>
+
+                    <div
+                      id="sign-successful"
+                      class="alert alert-success white-glassmorphism"
+                      style="display: none; color: #b1ebb1; margin-bottom: 36px; transition: 1s"
+                      role="alert"
+                    >
+                      Transaction Successful!
+                      <span id="transaction-hash"></span>
+                    </div>
+                  </div>
+
+                  <div class="hidden" style="display: none">
+                    <button
+                      id="is_wallet_created"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                    >
+                      Is Wallet Created
+                    </button>
+                    <br /><br />
+                    <button
+                      id="run_dkg"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                    >
+                      Run Distributed Keys Generation
+                    </button>
+                    <br /><br />
+                    <button
+                      id="get_wallet_accounts"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                    >
+                      Get Wallet Accounts
+                    </button>
+                    <br /><br />
+                    <label
+                      for="account_id"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                      >AccountId: style="display: none; visibility: hidden;
+                      visibility: hidden">AccountId:</label
+                    >
+                    <br />
+                    <select
+                      id="account_id"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                    >
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                    <br /><br />
+                    <label
+                      for="hash_alg"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                      >Hashing algorithm:</label
+                    >
+                    <br />
+                    <select
+                      id="hash_alg"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                    >
+                      <option value="sha256">sha256</option>
+                      <option value="sha256d">sha256d</option>
+                      <option value="keccak256">keccak256</option>
+                    </select>
+                    <br /><br />
+                    <button
+                      id="delete_wallet"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                    >
+                      Delete Wallet
+                    </button>
+                    <br /><br />
+                    <button
+                      id="stop"
+                      style="
+                        display: none;
+                        visibility: hidden;
+                        visibility: hidden;
+                      "
+                    >
+                      Stop
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+        <h3 class="text-white m-5 hidden1">Previous Transactions</h3>
+        
+        <div class="previous-transactions-container mt-5 text-center hidden1">
+
+          
+          <div
+            id = "new-transaction-receipt"
+            class="transaction-container white-glassmorphism"
+          >
+            <div class="transaction-icon text-white"><span id="new-transaction-value"> 0.1 </span> ETH</div>
+            <div class="ml-4 d-flex flex-row flex-1 transaction-detail-container">
+              <!-- <h3 class="mt-2 text-white text-lg">{title}</h3> -->
+              <p class="text-white transaction-detail">Sent to : 
+                <span id="new-transaction-sent-to">0xabcdef </span></p>
+              <p class="text-white transaction-detail">From : 
+                <span id="new-transaction-from">0xabcdef </span></p>
+              <p class="text-white transaction-detail">Hash : 
+                <span id="new-transaction-hash">0xabcdef </span> </p>
+            </div>
+          </div>
+
+          <% for(var i=0; i < 5; i++) { %>
+
+          <div
+            class="transaction-container white-glassmorphism"
+          >
+            <div class="transaction-icon text-white"><%= Math.floor(Math.random()*10) %>.<%= Math.floor(Math.random()*10) %> ETH</div>
+            <div class="ml-4 d-flex flex-row flex-1 transaction-detail-container">
+              <!-- <h3 class="mt-2 text-white text-lg">{title}</h3> -->
+              <p class="text-white transaction-detail">Sent to : 
+                <%= "0x" + Math.random().toString(36).substring(2,3+2) + "..." + Math.random().toString(36).substring(2,4+2) %> </p>
+              <p class="text-white transaction-detail">From : 
+                <%= "0x" + Math.random().toString(36).substring(2,3+2) + "..." + Math.random().toString(36).substring(2,4+2) %></p>
+              <p class="text-white transaction-detail">Hash : 
+                <%= "0x" + Math.random().toString(36).substring(2,3+2) + "..." + Math.random().toString(36).substring(2,4+2) %></p>
+            </div>
+          </div>
+
+          <% } %>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function showqr() {
+        $("#qr-modal").modal("show");
+      }
+    </script>
+  </body>
+
+  <script src="./utils/index.js"></script>
+  <script src="static/form_js/jquery.min.js"></script>
+  <script src="static/form_js/main.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+        // if (typeof web3 !== 'undefined') {
+        //     console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+        //     window.web3 = new Web3(web3.currentProvider);
+        // } else {
+            console.log('No Web3 Detected... using HTTP Provider')
+            window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/58294465867a4959b531ba34708fad5f"));
+        // }
+    })
+    function getBalance() {
+        var address, wei, balance
+        address = document.getElementById("address").value
+        try {
+            web3.eth.getBalance(address, function (error, wei) {
+                if (!error) {
+                    var balance = web3.fromWei(wei, 'ether');
+                    // document.getElementById("output").innerHTML = balance + " ETH";
+                    console.log("balance" : balance)
+                }
+            });
+        } catch (err) {
+            console.log(err)
+        }
+    }
+</script> -->
+
+  <style src="static/card.css"></style>
+
+  <style>
+    .not-connected {
+      display: none;
+    }
+    #sign-successful {
+      transition: all 0.5s ease-in-out;
+    }
+  </style>
+</html>
