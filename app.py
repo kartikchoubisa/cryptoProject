@@ -30,7 +30,5 @@ def get_certificate(user_name):
     user.register(CA)
     return jsonify({'result': 'success'})
 
-@app.route('/send_message/')
-
 if __name__ == '__main__':
     app.run()
