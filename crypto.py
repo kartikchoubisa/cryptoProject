@@ -107,6 +107,5 @@ def get_signed_message(message, private_key):
 
 def verify_certificate(name, certificate):
     # cert = x509.load_pem_x509_certificate(certificate, default_backend())
-
     return certificate.subject.get_attributes_for_oid(NameOID.COMMON_NAME)[0].value == name
 

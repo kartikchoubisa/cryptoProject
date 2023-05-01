@@ -24,10 +24,13 @@ def index():
     users.append(User('Bob'))
     return render_template('home.jinja2', users=users)
 
-@app.route('/send_message')
-def send_message():
-    pass
+@app.route('/get_certificate/<user_name>')
+def get_certificate(user_name):
+    user = User(user_name)
+    user.register(CA)
+    return jsonify({'result': 'success'})
 
+@app.route('/send_message/')
 
 if __name__ == '__main__':
     app.run()
