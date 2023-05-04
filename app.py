@@ -5,8 +5,10 @@ from players import CertificateAuthority
 app = Flask(__name__)
 
 users = []
+users.append(User('arjun'))
+users.append(User('bheem'))
 CA = CertificateAuthority('CA')
-
+payload_to_send = None
 @app.route('/')
 def index():
     # A = User('Alice')
@@ -23,12 +25,31 @@ def index():
     users.append(User('Alice'))
     users.append(User('Bob'))
     return render_template('home.jinja2', users=users)
-
-@app.route('/get_certificate/<user_name>')
-def get_certificate(user_name):
-    user = User(user_name)
+# @app.route('/generate_certificate/')
+# def generate_certificate():
+@app.route('/generate_certificate/arjun', methods=['GET'])
+def generate_certificate():
+    user = users[0]
     user.register(CA)
-    return jsonify({'result': 'success'})
+    return jsonify({'certificate': user.certificate.public_bytes().decode('utf-8')})
+@app.route('/generate_certificate/bheem', methods=['GET'])
+def generate_certificate():
+    user = users[1]
+    user.register(CA)
+    return jsonify({'certificate': user.certificate.public_bytes().decode('utf-8')})
 
+
+@app.route('/send_message/<string : message>',)
+def send_message(message):
+    user = users[0]
+    payload_to_send = user.send_message(message)
+    return jsonify(payload_to_send)
+    pass
+@app.route('/receive_message')
+def receive_message():
+    user = users[1]
+    payload_to_send = user.receive_message(**payload_to_send)
+    return jsonify(payload_to_send)
+    pass
 if __name__ == '__main__':
     app.run()
